@@ -1,5 +1,5 @@
 function initCv() {
-    fetch('http://localhost:3000/getCv')
+    fetch('https://cv-buddy-six.vercel.app/getCv')
         .then(response => response.json())
         .then(data => {
             if (data) {
@@ -17,7 +17,7 @@ initCv();
 function saveCvData() {
     const cvData = cv.innerHTML;
 
-    fetch('http://localhost:3000/saveCv', {
+    fetch('https://cv-buddy-six.vercel.app/saveCv', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'
