@@ -12,7 +12,10 @@ function initCv() {
         .catch(error => console.error('Error fetching CV data:', error));
 }
 
-initCv();
+$('#getCV').on("click", () => {
+    initCv();
+})
+
 
 function saveCvData() {
     const cvData = cv.innerHTML;
@@ -33,7 +36,8 @@ function saveCvData() {
 let lastCvData = cv.innerHTML;
 setInterval(() => {
     const currentCvData = cv.innerHTML;
-    if (currentCvData !== lastCvData) {
+
+    if (currentCvData !== lastCvData && $('#toggleAutoSave').text() !== "Enable Autosave" && $('#toggleAutoSave').length) {
         lastCvData = currentCvData;
         saveCvData();
     }
@@ -43,7 +47,7 @@ $('#saveCv').on('click', (event) => {
     cv.removeAttribute('contenteditable');
     const cvData = cv.innerHTML;
 
-    fetch('http://localhost:5000/saveCv', {
+    fetch('https://cv-buddy-six.vercel.app/saveCv', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'

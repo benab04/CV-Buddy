@@ -32,11 +32,13 @@
     <div class="main-container">
       <div class="m-4 d-flex justify-content-center">
         <a href="../" class="btn btn-info mx-2">Home</a>
+        <button id="getCV" class="btn btn-success mx-2">Retrieve</button>
         <button id="editCv" class="btn btn-secondary mx-2">Edit</button>
         <button id="saveCv" class="btn btn-primary mx-2">Save</button>
         <button id="resetCv" class="btn btn-danger mx-2">Reset</button>
         <button id="printCv" class="btn btn-success mx-2">Download</button>
         <button id="toggleButton" onclick="toggleImageContent()" class="btn btn-secondary mx-2">No Img</button>
+        <button id="toggleAutoSave" onclick="toggleAutoSave()" class="btn btn-danger mx-2">Disable Autosave</button>
       </div>
       <div class="vibrant-text">Click on profile to change it</div>
       <hr class="section-separator" />
@@ -227,7 +229,9 @@
       const previewImage = document.getElementById("previewImage");
 
       imageDiv.addEventListener("click", function () {
+        imageInput.style.display = "block";
         imageInput.click();
+        imageInput.style.display = "none";
         console.log("imageDivpressed");
       });
 
@@ -253,6 +257,19 @@
         } else {
           toggleButton.innerHTML = "No Img";
           previewImage.style.display = "block";
+        }
+      }
+      function toggleAutoSave() {
+        const toggleButton = document.getElementById("toggleAutoSave");
+
+        if (toggleButton.innerHTML === "Disable Autosave") {
+          toggleButton.innerHTML = "Enable Autosave";
+          toggleButton.classList.remove("btn-danger");
+          toggleButton.classList.add("btn-success");
+        } else {
+          toggleButton.innerHTML = "Disable Autosave";
+          toggleButton.classList.remove("btn-success");
+          toggleButton.classList.add("btn-danger");
         }
       }
     </script>
