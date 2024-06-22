@@ -3,10 +3,11 @@ const axios = require("axios")
 const mongoose = require("mongoose")
 const cors = require("cors")
 const dotenv = require("dotenv")
+const bodyParser = require("body-parser")
 dotenv.config({})
 const app = express()
 app.use(cors())
-app.use(express.json())
+app.use(bodyParser.json())
 
 mongoose.connect(process.env.MONGODB_URI).then(() => {
     console.log("Connected to database");
