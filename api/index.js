@@ -30,7 +30,7 @@ app.get("/", (req, res) => {
 app.get('/getCvList', async (req, res) => {
     try {
         const cvs = await cvBuddy.find({}, 'name createdAt');
-        res.json({ 
+        res.json({
             cvList: cvs.map(cv => ({
                 id: cv._id,
                 name: cv.name,
@@ -59,12 +59,12 @@ app.get('/getCv/:id', async (req, res) => {
 app.post('/createCv', async (req, res) => {
     const { data, name } = req.body;
     try {
-        const cvNew = new cvBuddy({ 
+        const cvNew = new cvBuddy({
             data,
             name: name || 'Untitled CV'
         });
         await cvNew.save();
-        res.json({ 
+        res.json({
             message: 'CV created successfully',
             id: cvNew._id,
             name: cvNew.name
@@ -87,7 +87,7 @@ app.post('/saveCv', async (req, res) => {
             cv.data = data;
             if (name) cv.name = name;
             await cv.save();
-            res.json({ 
+            res.json({
                 message: 'CV updated successfully',
                 id: cv._id,
                 name: cv.name
